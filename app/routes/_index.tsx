@@ -106,7 +106,10 @@ export default function Index() {
 	return (
 		<Grid container spacing={2} p={3}>
 			<Grid xs={12} my={2}>
-				<Typography textAlign='center' variant='h1'>
+				<Typography
+					textAlign='center'
+					variant='h1'
+					fontFamily='VT323, monospace'>
 					Territory
 				</Typography>
 			</Grid>

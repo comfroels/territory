@@ -13,9 +13,9 @@ export function RulesDialog({ open, handleClose }) {
 		<Dialog
 			open={open}
 			onClose={handleClose}
-			aria-labelledby='alert-dialog-title'
+			aria-label='rules'
+			maxWidth='xl'
 			aria-describedby='alert-dialog-description'>
-			<DialogTitle id='alert-dialog-title'>Rules</DialogTitle>
 			<DialogContent>
 				<Rules />
 			</DialogContent>

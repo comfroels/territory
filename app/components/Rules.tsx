@@ -27,7 +27,7 @@ const resources = [
 export function Rules() {
 	return (
 		<>
-			<Typography variant='h3' mb={2}>
+			<Typography variant='h3' mb={2} fontFamily='VT323, monospace'>
 				Rules
 			</Typography>
 			<Typography mb={2}>

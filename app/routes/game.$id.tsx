@@ -102,13 +102,17 @@ export default function Game() {
 				<Stack>
 					<Grid xs={10} xsOffset={1}>
 						<Stack p={2} component={Paper} borderRadius={3} elevation={3} m={2}>
-							<Typography variant='h1' textAlign='center'>
+							<Typography
+								variant='h1'
+								textAlign='center'
+								fontFamily='VT323, monospace'>
 								Game ID: {id}
 							</Typography>
 							<Typography variant='subtitle1' mb={3} textAlign='center'>
 								Share this code with your friends so they can join you!{' '}
 							</Typography>
 							<Typography
+								fontFamily='VT323, monospace'
 								variant='h3'
 								textAlign='center'
 								sx={{
@@ -125,7 +129,8 @@ export default function Game() {
 									variant='h3'
 									textAlign='center'
 									mt={2}
-									color='primary'>
+									color='primary'
+									fontFamily='VT323, monospace'>
 									{over.winner
 										? over.winner === user
 											? 'You Win!'
@@ -148,6 +153,72 @@ export default function Game() {
 							elevation={3}
 							m={2}
 							component={Paper}>
+							{game && (
+								<Stack mr={3}>
+									<Typography
+										variant='h5'
+										fontFamily='VT323, monospace'
+										fontSize='30px'>
+										Score
+									</Typography>
+									<Stack direction='row' alignItems='center' spacing={3}>
+										<Typography
+											color={yourColor}
+											fontWeight='bold'
+											fontFamily='VT323, monospace'
+											fontSize='28px'>
+											You:{' '}
+											{game.initiator?.id === user
+												? getScore(true, game)
+												: getScore(false, game)}
+										</Typography>
+										<Typography
+											color={theirColor}
+											fontWeight='bold'
+											fontFamily='VT323, monospace'
+											fontSize='28px'>
+											Them:{' '}
+											{game.initiator?.id !== user
+												? getScore(true, game)
+												: getScore(false, game)}
+										</Typography>
+									</Stack>
+								</Stack>
+							)}
+
+							{game && (
+								<Stack
+									direction='row'
+									alignItems='center'
+									justifyContent='space-between'>
+									<Stack spacing={4} direction='row' alignItems='center' ml={3}>
+										<Stack direction='row' alignItems='center' spacing={3}>
+											<ForestIcon sx={{ color: green[600] }} />
+											<Typography
+												fontWeight='bold'
+												fontSize='28px'
+												mt={2}
+												fontFamily='VT323, monospace'>
+												{game.initiator?.id === user
+													? game.initiator.currency.wood
+													: game.opponent?.currency?.wood}
+											</Typography>
+										</Stack>
+										<Stack direction='row' alignItems='center' spacing={3}>
+											<LandscapeIcon sx={{ color: grey[400] }} />
+											<Typography
+												fontWeight='bold'
+												fontSize='28px'
+												mt={2}
+												fontFamily='VT323, monospace'>
+												{game.initiator?.id === user
+													? game.initiator.currency.stone
+													: game.opponent?.currency?.stone}
+											</Typography>
+										</Stack>
+									</Stack>
+								</Stack>
+							)}
 							<Button
 								variant='contained'
 								startIcon={<BookIcon />}
@@ -159,56 +230,6 @@ export default function Game() {
 								open={isRulesOpen}
 								handleClose={() => setIsRulesOpen(false)}
 							/>
-							{game && (
-								<Stack
-									direction='row'
-									alignItems='center'
-									justifyContent='space-between'>
-									<Stack spacing={4} direction='row' alignItems='center' ml={3}>
-										<Stack direction='row' alignItems='center' spacing={3}>
-											<ForestIcon sx={{ color: green[600] }} />
-											<Typography fontWeight='bold' fontSize='17px' mt={2}>
-												{game.initiator?.id === user
-													? game.initiator.currency.wood
-													: game.opponent?.currency?.wood}
-											</Typography>
-										</Stack>
-										<Stack direction='row' alignItems='center' spacing={3}>
-											<LandscapeIcon sx={{ color: grey[400] }} />
-											<Typography fontWeight='bold' fontSize='17px' mt={2}>
-												{game.initiator?.id === user
-													? game.initiator.currency.stone
-													: game.opponent?.currency?.stone}
-											</Typography>
-										</Stack>
-									</Stack>
-								</Stack>
-							)}
-							{game && (
-								<Stack mr={3}>
-									<Typography variant='h5'>Score</Typography>
-									<Stack direction='row' alignItems='center' spacing={3}>
-										<Typography
-											color={yourColor}
-											fontWeight='bold'
-											fontSize='17px'>
-											You:{' '}
-											{game.initiator?.id === user
-												? getScore(true, game)
-												: getScore(false, game)}
-										</Typography>
-										<Typography
-											color={theirColor}
-											fontWeight='bold'
-											fontSize='17px'>
-											Them:{' '}
-											{game.initiator?.id !== user
-												? getScore(true, game)
-												: getScore(false, game)}
-										</Typography>
-									</Stack>
-								</Stack>
-							)}
 						</Stack>
 					</Grid>
 				</Stack>
