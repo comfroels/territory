@@ -22,6 +22,7 @@ import ClientStyleContext from './style/StylesContext.tsx';
 import { UserContextProvider } from './contexts/user.tsx';
 
 export const links: LinksFunction = () => [
+	{ rel: 'icon', type: 'image/png', href: '/favicon-32x32.png' },
 	...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
 ];
 

@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { blue, blueGrey, green, grey, red } from '@mui/material/colors';
-import { useNavigate, useParams } from '@remix-run/react';
+import { V2_MetaFunction, useNavigate, useParams } from '@remix-run/react';
 import React, { useState } from 'react';
 import { RulesDialog } from '../components/RulesDialog.tsx';
 import { useUserContext } from '../contexts/user.tsx';
@@ -26,6 +26,13 @@ import { EXPENSE, TileAmounts, TileImages, TileTypes } from '../utils.ts';
 
 const yourColor = blue[400];
 const theirColor = red[400];
+
+export const meta: V2_MetaFunction = () => {
+	return [
+		{ title: 'Territory Game' },
+		{ name: 'description', content: 'Welcome to Territory!' },
+	];
+};
 
 export default function Game() {
 	const { id } = useParams();
