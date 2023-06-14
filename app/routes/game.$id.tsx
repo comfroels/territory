@@ -43,6 +43,10 @@ export default function Game() {
 		);
 		eventSource.onmessage = (e) => {
 			const newGame = JSON.parse(e.data);
+			if (newGame.isOver) {
+				const audio = new Audio('/game-over.wav');
+				audio.play();
+			}
 			setGame(newGame.game);
 			setOver({ isOver: newGame.isOver, winner: newGame.winner });
 		};
@@ -305,13 +309,15 @@ function ItemCard({
 							row.owner
 						)
 					}
-					onClick={() =>
+					onClick={() => {
+						const audio = new Audio('/coins.wav');
+						audio.play();
 						updateGame({
 							rowIndex,
 							columnIndex,
 							tile: { tile: row.tile, owner: user },
-						})
-					}>
+						});
+					}}>
 					<Stack justifyContent='center' alignItems='center'>
 						<CardMedia
 							component='img'
@@ -342,6 +348,8 @@ function ItemCard({
 										)
 									}
 									onClick={() => {
+										const audio = new Audio('/coins.wav');
+										audio.play();
 										updateGame({
 											rowIndex,
 											columnIndex,
@@ -373,6 +381,8 @@ function ItemCard({
 										)
 									}
 									onClick={() => {
+										const audio = new Audio('/coins.wav');
+										audio.play();
 										updateGame({
 											rowIndex,
 											columnIndex,

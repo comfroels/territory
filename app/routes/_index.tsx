@@ -68,6 +68,8 @@ export default function Index() {
 	}, []);
 
 	async function newGame() {
+		const audio = new Audio('/game-start.wav');
+		audio.play();
 		const game: Game = {
 			id: Math.random().toString(36).slice(2),
 			opponent: {
