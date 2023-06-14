@@ -10,14 +10,18 @@ import {
 	CardActions,
 	CardContent,
 	CardMedia,
+	Dialog,
+	DialogActions,
+	DialogContent,
 	Paper,
 	Stack,
+	TextField,
 	Typography,
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { blue, blueGrey, green, grey, red } from '@mui/material/colors';
 import { V2_MetaFunction, useNavigate, useParams } from '@remix-run/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RulesDialog } from '../components/RulesDialog.tsx';
 import { useUserContext } from '../contexts/user.tsx';
 import { useDataSubscription } from '../hooks.ts';
@@ -122,6 +126,15 @@ export default function Game() {
 							<Typography variant='subtitle1' mb={3} textAlign='center'>
 								Share this code with your friends so they can join you!{' '}
 							</Typography>
+							{game && !game.opponent?.id && (
+								<Typography
+									variant='h5'
+									my={2}
+									textAlign='center'
+									color='warning'>
+									Waiting for opponent to join...
+								</Typography>
+							)}
 							<Typography
 								fontFamily='VT323, monospace'
 								variant='h3'
