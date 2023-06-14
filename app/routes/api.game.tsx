@@ -68,7 +68,6 @@ export async function action({ request }: ActionArgs) {
 			status: 409,
 		});
 	}
-	console.log('gonna return?', game);
 	return new Response(
 		JSON.stringify({ game, isOver: analysis.isOver, winner: analysis.winner }),
 		{

@@ -27,7 +27,7 @@ export function UserContextProvider({
 	React.useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const user = localStorage.getItem(`territory:user`);
-			console.log('user', user);
+
 			if (user) {
 				setUser(user);
 			} else {

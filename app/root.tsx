@@ -56,7 +56,7 @@ const Document = withEmotionCache((props, emotionCache) => {
 				<UserContextProvider initialUser=''>
 					<Outlet />
 				</UserContextProvider>
-				<Stack>
+				<Stack mt={3}>
 					<Stack
 						width='100%'
 						direction='row'

@@ -80,7 +80,6 @@ export default function Game() {
 					}
 					break;
 				default: {
-					console.log('TileAmounts', TileAmounts, tile.tile);
 					if (isOpponent) {
 						game.opponent.currency.wood += TileAmounts[tile.tile].wood;
 						game.opponent.currency.stone += TileAmounts[tile.tile].stone;
@@ -100,46 +99,60 @@ export default function Game() {
 	return (
 		<Grid container spacing={2}>
 			<Grid xs={12}>
-				<Stack p={3}>
+				<Stack>
 					<Grid xs={10} xsOffset={1}>
-						<Typography variant='h1'>Game ID: {id}</Typography>
-						<Typography variant='subtitle1'>
-							Share this code with your friends so they can join you!{' '}
-						</Typography>
-						<Typography
-							variant='h2'
-							sx={{
-								color: game.currentTurn === user ? yourColor : theirColor,
-							}}>
-							{game.currentTurn === user && (
-								<ChevronRightIcon sx={{ height: '40px' }} />
-							)}
-							Current Turn: {game.currentTurn}
-							{game.currentTurn === user && " (Psst.. it's your turn!)"}
-						</Typography>
-						{over.isOver && (
-							<Typography variant='h3'>
-								{over.winner
-									? over.winner === user
-										? 'You Win!'
-										: 'You Lose!'
-									: 'Draw!'}
+						<Stack p={2} component={Paper} borderRadius={3} elevation={3} m={2}>
+							<Typography variant='h1' textAlign='center'>
+								Game ID: {id}
 							</Typography>
-						)}
-						{over.isOver && (
-							<Button variant='contained' onClick={() => navigate('/')}>
-								Play Again
-							</Button>
-						)}
+							<Typography variant='subtitle1' mb={3} textAlign='center'>
+								Share this code with your friends so they can join you!{' '}
+							</Typography>
+							<Typography
+								variant='h3'
+								textAlign='center'
+								sx={{
+									color: game.currentTurn === user ? yourColor : theirColor,
+								}}>
+								{game.currentTurn === user && (
+									<ChevronRightIcon sx={{ height: '40px' }} />
+								)}
+								Current Turn: {game.currentTurn}
+								{game.currentTurn === user && " (Psst.. it's your turn!)"}
+							</Typography>
+							{over.isOver && (
+								<Typography
+									variant='h3'
+									textAlign='center'
+									mt={2}
+									color='primary'>
+									{over.winner
+										? over.winner === user
+											? 'You Win!'
+											: 'You Lose!'
+										: 'Draw!'}
+								</Typography>
+							)}
+							{over.isOver && (
+								<Button variant='contained' onClick={() => navigate('/')}>
+									Play Again
+								</Button>
+							)}
+						</Stack>
 						<Stack
 							direction='row'
 							alignItems='center'
-							justifyContent='space-between'>
+							justifyContent='space-between'
+							p={2}
+							borderRadius={3}
+							elevation={3}
+							m={2}
+							component={Paper}>
 							<Button
 								variant='contained'
 								startIcon={<BookIcon />}
 								onClick={() => setIsRulesOpen(true)}
-								sx={{ width: '200px', mt: 3 }}>
+								sx={{ width: '200px' }}>
 								Rules
 							</Button>
 							<RulesDialog
@@ -150,7 +163,6 @@ export default function Game() {
 								<Stack
 									direction='row'
 									alignItems='center'
-									mt={4}
 									justifyContent='space-between'>
 									<Stack spacing={4} direction='row' alignItems='center' ml={3}>
 										<Stack direction='row' alignItems='center' spacing={3}>
@@ -173,7 +185,7 @@ export default function Game() {
 								</Stack>
 							)}
 							{game && (
-								<Stack>
+								<Stack mr={3}>
 									<Typography variant='h5'>Score</Typography>
 									<Stack direction='row' alignItems='center' spacing={3}>
 										<Typography
